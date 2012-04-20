@@ -1,0 +1,3 @@
+After being idle for a decent amount of time, hit refresh, and you're partially logged in... or something like that
+
+after saving a class, it refuses to change to "SAVE GROUP" from "SAVE CLASS"

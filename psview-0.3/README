@@ -1,0 +1,28 @@
+This is version 0.3 of psview, the Online viewer for PDF, PostScript and Word which can be found at http://view.samurajdata.se/
+
+psview is open source software, released under the GPL.
+
+The INSTALL file contains installation instructions.
+
+Known problems:
+- Creating the MySQL tables may balk because of 'Position' being a reserved word in newer versions of MySQL. Will fix in later releases.
+
+Original author:
+- Claes Månsson, cj@samurajdata.se
+
+Feedback and comments (Thanks!):
+- Peter A. Mathews (general cheering and support)
+- Joe Crawford (found the Position bug)
+- James Addison (suggested the view-all-pages-at-once feature)
+- Mathis Diego (suggested the rotate feature)
+... and a bunch of other nice people whose positive email correspondence keeps the viewer up and running 
+
+Changes since 0.2
+- Directory structure clean up
+- Moved functionality from shell scripts to php (obsoleting file_type.sh and ps.sh)
+- New feature to rotate pages right and left
+- New feature to view all document pages on the same web page 
+- Use wv instead of deprecated mswordview
+- New error page (psfail.php)
+- Improved input validation
+- Viewer moved from http://www.samurajdata.se/~cj/ps.html to http://view.samurajdata.se/

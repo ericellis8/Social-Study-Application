@@ -1,0 +1,173 @@
+#chatApplication{
+border: 1Px solid;
+border-color:#ff6347;
+border-bottom:0px;
+border-left:0px;
+position:relative;
+right:4px;
+width:400px;
+padding-top:10px;
+
+}
+#mainBody{
+position:relative;
+top:30px;
+padding-bottom:60px;
+}
+#whiteboardApplication{
+position:relative;
+left:-2px; 
+border: 1Px solid;
+border-color:#ff6347;
+border-right:0px;
+border-bottom:0px;
+padding-top:10px;
+}
+
+#newsfeed{
+position:relative;
+top:35px;
+left:5px;
+}
+
+#searchbox{
+position:absolute;
+z-index:-1;
+height:30px;
+width:100%;
+}
+
+#newSessionSearchBox{
+position:absolute;
+z-index:-1;
+height:30px;
+width:100%;
+}
+
+#blur{
+opacity:0.6;
+position:fixed;
+z-index:998;
+width:100%;
+height:100%;
+}
+
+#classSearch{
+position:relative;
+top:3px;
+left:10px;
+border:0;
+width:80%;
+color:grey;
+}
+@-moz-document url-prefix() {
+  #searchbox {
+     width:16%;
+  }
+}
+
+#classSearch:active{
+outline:0px;
+}
+#classSearch:focus{
+outline:0px;
+}
+
+#classSearchResults{
+margin-top:6px;
+background-color:white;
+position:absolute;
+left:5px;
+z-index:100;
+width:95%;
+max-height:200px;
+overflow:scroll;
+border:1px solid black;
+border-top:0px;
+padding-bottom:10px;
+}
+
+@-moz-document url-prefix() {
+  #classSearchResults {
+     width:15%;
+     position:absolute;
+     left:17px;
+  }
+}
+
+#searchResults:hover{
+width:100%;
+background-color:#d3d3d3;
+}
+
+#buddySearch{
+position:relative;
+top:3px;
+left:10px;
+border:0;
+width:80%;
+color:grey;
+}
+
+#buddySearch:active{
+outline:0px;
+}
+#buddySearch:focus{
+outline:0px;
+}
+
+#buddySearchResults{
+margin-top:6px;
+background-color:white;
+position:absolute;
+left:5px;
+z-index:100;
+width:95%;
+max-height:200px;
+overflow:scroll;
+border:1px solid black;
+border-top:0px;
+padding-bottom:10px;
+}
+
+@-moz-document url-prefix() {
+  #buddySearchResults {
+     width:15%;
+     position:absolute;
+     left:17px;
+  }
+}
+
+#searchResults:hover{
+width:100%;
+background-color:#d3d3d3;
+}
+
+#newStudySession{
+border-style:solid;
+border-width:5px;
+border-color:#ff6347;
+background-color:#DDD;
+position:fixed;
+z-index:1000;
+left:400px;
+top:100px;
+}
+
+#left_bar{
+border: 1Px solid black;
+border-bottom:0px;
+border-right:0px;
+border-left:0px;
+position:relative;
+left:0px;
+height:700px;
+padding-top:10px;
+}
+
+#showhide{
+cursor:pointer;
+}
+#showhide2{
+cursor:pointer;
+}
