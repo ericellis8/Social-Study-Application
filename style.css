@@ -28,6 +28,12 @@ padding-top:10px;
 position:relative;
 top:35px;
 left:5px;
+width:600px;
+height:440px;
+border:1px solid black;
+border-left:0px;
+border-bottom:0px;
+border-right:0px;
 }
 
 #searchbox{
@@ -47,8 +53,9 @@ width:100%;
 #blur{
 opacity:0.6;
 position:fixed;
+left:-10px;
 z-index:998;
-width:100%;
+width:110%;
 height:100%;
 }
 
@@ -146,7 +153,8 @@ background-color:#d3d3d3;
 #newStudySession{
 border-style:solid;
 border-width:5px;
-border-color:#ff6347;
+border-color:white;
+/*border-color:#ff6347;*/
 background-color:#DDD;
 position:fixed;
 z-index:1000;

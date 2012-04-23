@@ -85,8 +85,23 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("studyRoom").innerHTML=xmlhttp.responseText;
+    if(document.getElementsByClassName("studyRooom")){
+        var study_room = document.getElementsByClassName("studyRoom");
+        var roomLength = study_room.length;
+        if(document.getElementById("pfc_title")){
+            var title = document.getElementById("pfc_title").innerHTML;
+            for(var i =0; i < roomLength; i++){
+                if(study_room[i].name == title){
+                    study_room[i].style.color = "#ff6347";
+                }else{
+                    study_room[i].style.color = "black";
+                }
+            }
+        }
+    }
     }
   }
+
 xmlhttp.open("GET","studyRooms.php?username="+username,true);
 xmlhttp.send();
 }

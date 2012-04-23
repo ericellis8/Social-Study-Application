@@ -83,13 +83,6 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("GET","newUnionDraw.php?room="+room,true);
 xmlhttp.send();
-var uniondraw = $('uniondraw');
-   /* if(showhide_status){
-         uniondraw.style.top = '30px';
-         uniondraw.style.width = '600px';
-    }else{
-        uniondraw.style.width = '500px';
-    }*/
 },
   
   loadNewsFeed: function()
@@ -112,13 +105,6 @@ xmlhttp.onreadystatechange=function()
   }
 xmlhttp.open("GET","newsfeed.php",true);
 xmlhttp.send();
-var uniondraw = $('uniondraw');
-   /* if(showhide_status){
-         uniondraw.style.top = '30px';
-         uniondraw.style.width = '600px';
-    }else{
-        uniondraw.style.width = '500px';
-    }*/
 },
 
 checkClassOrGroup: function(name)
@@ -218,7 +204,19 @@ xmlhttp.send();
          document.getElementById("uniondraw").style.display = "";
          document.getElementById("newsfeed").style.display = "none";
          pfc.gui.checkClassOrGroup(this.current_tab);
-          pfc.gui.changeDraw(tabid);
+         pfc.gui.changeDraw(tabid);
+    }
+    if(document.getElementsByClassName("studyRooom")){
+        var study_room = document.getElementsByClassName("studyRoom");
+        var roomLength = study_room.length;
+        var title = document.getElementById("pfc_title").innerHTML;
+        for(var i =0; i < roomLength; i++){
+            if(study_room[i].name == title){
+                study_room[i].style.color = "#ff6347";
+            }else{
+                study_room[i].style.color = "black";
+            }
+        }
     }
     this.unnotifyTab(tabid);
   },

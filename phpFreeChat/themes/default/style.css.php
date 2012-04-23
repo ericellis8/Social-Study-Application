@@ -183,7 +183,7 @@ h2#pfc_title {
   margin:0; padding:0; border: none;
   font-size: 110%;
   position:relative;
-  right:220px;
+  /*right:220px;*/
   bottom:5px;
   color:#ff6347;
 }
