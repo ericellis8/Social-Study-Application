@@ -1,4 +1,4 @@
-<center><u style='font:16px Tahoma, Sans-serif;color:#ff6347'>Buddy List
+<center><u style='font:16px Tahoma, Sans-serif;color:#c34500;text-decoration:none'>Buddy List
 <?php
 	mysql_connect("localhost","mia","soulskater") or die(mysql_error());
 	mysql_select_db("social_study_groups") or die(mysql_error());
@@ -37,8 +37,8 @@
 	echo "<BR><span id='here'>";
 	echo "<table width=100%>";
 	foreach($onlineUserArray as $user){
-		echo "<div style='font:15px Tahoma, Sans-serif;color:blue;'>";
-		echo "<tr><td><a title='Remove User' href='#' style='color:red;cursor:pointer;text-decoration:none' onClick=\"removeBuddy('" . $user ."');getBuddyList('". $username ."')\"><img src='images/delete.gif' /> </a><a onclick=\"pfc.sendRequest('/privmsg ". $user . "')\" href= 'javascript:void(0);' style = 'text-decoration:none;'>" . $user . "</a></td><td align=right></td></tr>";
+		echo "<div style='font:15px Tahoma, Sans-serif;color:#c34500;'>";
+		echo "<tr><td><a title='Remove User' href='#' style='color:red;cursor:pointer;text-decoration:none' onClick=\"removeBuddy('" . $user ."');getBuddyList('". $username ."')\"><img src='images/delete.gif' /> </a><a onclick=\"pfc.sendRequest('/privmsg ". $user . "')\" href= 'javascript:void(0);' style = 'text-decoration:none;color:#c34500;'>" . $user . "</a></td><td align=right></td></tr>";
 		echo "</div>";
 	}
 	

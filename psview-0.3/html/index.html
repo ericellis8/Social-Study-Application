@@ -3,14 +3,18 @@
 <TITLE>Online viewer for PDF, PostScript and Word</TITLE>
 <META name="description" content="Online PDF, PostScript and Word viewer. View documents online for free. No software installation required.">
 <META name="keywords" content="Online, Web, View, Viewer, PDF, PS, PostScript, Word, MS, Microsoft, Free, Convert">
-
+<style type="text/css">
+body {
+  background-color:#f2f2f2;
+}
+</style>
 </HEAD>
-<BODY BGCOLOR= "#FFFFFF">
+<BODY> 
 
 <H1 align=center>Online viewer for PDF, PostScript and Word</H1>
 
 <UL>
-<LI>This is an online viewer, with which you can view PDF and PostScript files as browsable images and Word documents as web pages. Given a URL on the net or a file on your computer, the viewer will try to retrieve the document, convert it and show it to you. No plugin software is required.
+<!--<LI>This is an online viewer, with which you can view PDF and PostScript files as browsable images and Word documents as web pages. Given a URL on the net or a file on your computer, the viewer will try to retrieve the document, convert it and show it to you. No plugin software is required.
 </UL>
 
 <UL>
@@ -20,21 +24,18 @@
 <INPUT NAME="url" SIZE=50 TYPE="text" VALUE="http://">
 <INPUT NAME="submit" TYPE="submit" VALUE="View!"><BR>
 </FORM>
-</UL>
-
+</UL>-->
 <UL>
-<B>FILE view - Upload a file from your computer:</B>
-<LI>
+<B>Upload a file from your computer:</B>
 
-<FORM ENCTYPE="multipart/form-data" action="ps.php" method="POST">
+<FORM  ENCTYPE="multipart/form-data" action="ps.php" method="POST">
 <INPUT TYPE="hidden" name="MAX_FILE_SIZE" value="5000000">
 <INPUT NAME="file" SIZE=50 TYPE="file" VALUE="">
 <INPUT NAME="submit" TYPE="submit" VALUE="View!">
 <BR>
 </FORM>
-
 </UL>
-
+<!--
 <UL>
 <B>OR - View these examples:</B>
 <LI>
@@ -77,7 +78,7 @@
 <UL>
 <B>More stuff:</B>
 <LI>The viewer is hosted by <a href="http://www.samurajdata.se/">Samuraj Data AB</a>.
-</UL>
+</UL>-->
 
 </BODY>
 </HTML>

@@ -115,7 +115,7 @@ function init () {
   initOrbiter();
   iPhoneToTop();
   
-  setStatus("Connecting to UnionDraw…");// + roomID);
+  setStatus("Connecting…");// + roomID);
 }
 
 // Set up the drawing canvas
@@ -574,6 +574,16 @@ function thicknessSelectListener (e) {
   iPhoneToTop();
 }
 
+function resetColors(){
+	document.getElementById("whiteColor").src = "../images/white.png";
+	document.getElementById("redColor").src = "../images/red.png";
+	document.getElementById("greenColor").src = "../images/green.png";
+	document.getElementById("blueColor").src = "../images/blue.png";
+	document.getElementById("orangeColor").src = "../images/orange.png";
+	document.getElementById("yellowColor").src = "../images/yellow.png";
+	document.getElementById("eraserColor").src = "../images/eraser2.png";
+}
+
 // Triggered when an option in the "line color" menu is selected
 function colorSelectListener (e) {
   // Determine which option was selected
@@ -581,6 +591,38 @@ function colorSelectListener (e) {
   // Locally, set the line color to the selected value
   localLineColor = newColor;
   // Share selected color with other users
+  switch(e){
+  	case '#FFFFFF':
+  		resetColors();
+  		document.getElementById("whiteColor").src = "../images/whiteSelected.png";
+  		break;
+  	case '#ff0000':
+  		resetColors();
+  		document.getElementById("redColor").src = "../images/redSelected.png";
+  		break;
+  	case '#228b22':
+  		resetColors();
+  		document.getElementById("greenColor").src = "../images/greenSelected.png";
+  		break;
+  	case '#0000ff':
+  		resetColors();
+  		document.getElementById("blueColor").src = "../images/blueSelected.png";
+  		break;
+  	case '#ffa500':
+  		resetColors();
+  		document.getElementById("orangeColor").src = "../images/orangeSelected.png";
+  		break;
+  	case '#ffff00':
+  		resetColors();
+  		document.getElementById("yellowColor").src = "../images/yellowSelected.png";
+  		break;
+  	case '#333333':
+  		resetColors();
+  		document.getElementById("eraserColor").src = "../images/eraserSelected.png";
+  		break;
+  	default:
+  		break;
+  }
   msgManager.sendUPC(UPC.SET_CLIENT_ATTR, 
                      orbiter.getClientID(),
                      "",

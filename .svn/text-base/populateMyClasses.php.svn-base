@@ -1,0 +1,18 @@
+<?php
+	mysql_connect("localhost","mia","soulskater") or die(mysql_error());
+    mysql_select_db("social_study_groups") or die(mysql_error());
+	$user = $_GET['username'];
+	if($user != ''){
+        $query = "Select class_name,section from classes,class_permissions where class_permissions.user_id=(Select user_id from user where user_name='$user') and class_permissions.crn=classes.crn";
+		$result = mysql_query($query);
+	
+		//Current user class list
+		echo "<select id='class' onchange='classUserList()'>";
+		while($row = mysql_fetch_array($result)){
+			echo "<option value='" . $row['class_name'] . " Sec. " . $row['section'] . "'>" . $row['class_name'] .  " Sec. " . $row['section'] . "</option>";
+		}
+		echo "</select>";
+
+		echo "<select id='classUserList'></select>";	
+	}
+?>

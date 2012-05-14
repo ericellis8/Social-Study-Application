@@ -2,16 +2,24 @@
 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
 mysql_select_db("social_study_groups") or die(mysql_error());
 session_start();
-
 if(isset($_SESSION['username'])){
 	$username = $_SESSION['username'];
+	$query = "Select show_name from user where user_name = '$username'";
+	$result = mysql_query($query) or die(mysql_error());
+	$row = mysql_fetch_array($result);
 	require dirname(__FILE__)."/phpFreeChat/src/phpfreechat.class.php";
 	$params = array();
 	$params["title"] = "ClassPoint";
-	$params["nick"] = $_SESSION['username'];	
-	$myNickName = $params["nick"];
+	if($row['show_name'] == 0){
+		$myNickName = "student".rand(1,1000);
+		$params["nick"] = $myNickName;
+	}else{
+		$params["nick"] = $_SESSION['username'];
+		$myNickName = $_SESSION['username'];
+	}		
+	//$myNickName = $params["nick"];
 	$params['firstisadmin'] = true;
-	$params["isadmin"] = true; // makes everybody admin: do not use it on production servers ;)
+	$params["isadmin"] = false; // makes everybody admin: do not use it on production servers ;)
 	$params["serverid"] = md5("pupchat"); //__FILE__); // calculate a unique id for this chat
 	$params["debug"] = false;
 	$params["theme_path"] = "/phpFreeChat/themes";
@@ -40,7 +48,7 @@ if(isset($_SESSION['username'])){
 
 <script src="scripts.js" />
 <script type="text/javascript">
-	setTimeout("changeName('<?php echo $username; ?>')", 1000);
+	setTimeout("changeName('<?php echo $myNickName; ?>')", 1000);
 </script>
 
         </head>  
@@ -52,22 +60,23 @@ if(isset($_SESSION['username'])){
 <!-- Navagation Bar -->      
            <nav id="topNav" style="min-width:1090px;">  
                     <ul>  
-                    	<li class='first-child'><a href='index.php' title="Nav Link 1">Beaver Study</a></li>  
-                        <li><a href='#' onclick="newStudySession()" title="Nav Link 1">Start A Temporary Session</a></li>  
-                    	<li><a href="#" title="Nav Link 1" >Create A New Study Group</a></li> 
+                    	<li class='first-child'><a href='index.php'>Beaver Study</a></li>  
+                        <li><a href='#' onclick="newStudySession()" title="Create a session for one time use">Start A Temporary Session</a></li>  
+                    	<li><a href="#" onclick="newStudyGroup()" title="Create a perminent study group" >Create A New Study Group</a></li> 
                     	<!--<li><a href="#" title="Nav Link 1">Add Friends</a></li>  -->
+                    	<!--<li><a href="javascript:void(0)" onClick='logOut()'>Log Out</a></li>-->
                     	<li>
-                    		<a href="#" title="Nav Link 1">Account</a>
+                    		<a href="#">Account</a>
                     		<ul>
                     			<li><a href="javascript:void(0)" onClick='logOut()'>Log Out</a></li>
-                    			<li><a href="#">User Settings</a></li>
+                    			<li><a href="javascript:void(0)" onclick='editUserSettings()'>User Settings</a></li>
                     		</ul>
                     	</li>  
-                    	<li class="last"><a href="#" class="last" title="Nav Link 1">About</a></li> 
+                    	<li class="last"><a href="about.php" class="last">About</a></li> 
 <?
 						if($_SESSION['loggedIn'] == 'true')
                     	{
-                    		echo "<span style=\"position:relative;bottom:-10px;left:3px;color:white\">Welcome " . $_SESSION['name'] ;
+                    		echo "<span style=\"position:relative;bottom:-12px;left:3px;color:white\">Welcome " . $_SESSION['name'] ;
                     	    //echo "<a style='position:relative;left:20px;' onclick='logOut()' href='javascript:void(0)'>Log Out</a></span>";
                     	}
 ?>
@@ -85,8 +94,12 @@ if(isset($_SESSION['username'])){
 		
 <!-- Buddy List and Study Groups -->		
 			<td width="250px" id="left_bar" align="left" valign="top"	>	
+<?php
+	if($_SESSION['loggedIn'] == 'true'){
+?>			
 				<img title="Hide Side Bar" align='right' id='showhide' onclick='swap_show_hide()' src='images/left.png' />
 <?php
+	}
 	if($_SESSION['loggedIn'] != 'true'){
 ?>
 			Log in
@@ -105,15 +118,57 @@ if(isset($_SESSION['username'])){
 			</table>
 					<center>
 						<input type="submit" value="Sign on" />
-						<input type="button" value="Authentication" onclick="window.location.href='https://login.oregonstate.edu/cas/login?service=http://example.oregonstate.edu/'" />
+						<input type="button" value="Authentication" onclick="window.location.href='https://login.oregonstate.edu/cas-dev/login?service=http://24.21.109.238/svn/root/login.php'" />
 					</center>
 			<br>
 					</form>
-			login with username = testUser <BR>
-			and password = password <BR>
-			or create your own in the DB
-			
-		
+					
+			<br><br>
+					
+			New Users (Temporary placeholder before CAS authentication)
+			<table>
+				<tr><td>
+					<form align="left" action="addNewUser.php" method="post">
+						Username: 
+				</td><td>
+						<input type="text" name="username_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Onidname: 
+				</td><td>	
+						<input type="text" name="oniduser_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Full Name: 
+				</td><td>	
+						<input type="text" name="fullname_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Email: 
+				</td><td>	
+						<input type="text" name="email_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Password: 
+				</td><td>	
+						<input type="password" name="password_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Password Confirmation: 
+				</td><td>	
+						<input type="password" name="password2_entry" /><br>
+				</td></tr>
+				<tr><td>
+						Major: 
+				</td><td>	
+						<input type="text" name="major_entry" /><br>
+				</td></tr>
+			</table>
+					<center>
+						<input type="submit" value="Create Account" />
+					</center>
+			<br>
+					</form>
 			
 <?php
 	}
@@ -132,7 +187,7 @@ if(isset($_SESSION['username'])){
 		</img>
 		<BR>
 		<BR>
-		<HR color="#ff6347">
+		<HR color="#c34500">
 		<div id="buddyList">
 			<script type="text/javascript">
 				getBuddyList('<?php echo $username; ?>');
@@ -144,9 +199,7 @@ if(isset($_SESSION['username'])){
 		<img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="buddySearch" onBlur="setBuddySearchBoxValue()" value="Search Users" onFocus="setBuddySearchBoxValue()" type="text" size="30" onKeyUp="searchUsers()" value=""/>
 		<div style="display:none" id="buddySearchResults"></div>
 		</img>
-<?php
-	}
-?>
+
 			</td>
 			
 			<div style="display:none; "id="newStudySession"> </div>
@@ -164,8 +217,32 @@ if(isset($_SESSION['username'])){
 				?>
 				<img title="Show Side Bar" align='left' id='showhide2' onclick='swap_show_hide()' src='images/right.png' style="display:none;"/>
 				<div id='newsfeed'></div>
+				<table>
+				<tr>
+				<td>
 				<div id='uniondraw'></div>
+				</td><td>
+				<span id='docViewer'></span>
+				</td></tr>
+				</table>
+				<?
+					if($_SESSION['loggedIn'] == 'true'){
+				?>
+				<div style='width:600px;position:relative;left:8px;background-color:#DDD;bottom:10px;height:39px;border:1px solid black;' style="display:none;" id='switchDocDraw'>
+					
+					<img id="showWhiteBoard" style="cursor:pointer;" onclick='showWhiteboard()' src='images/whiteboardSelected.png' />
+					<img id="showDoc" style="cursor:pointer;position:relative;right:0px;" onclick='showDocViewer()' src='images/docViewer.png' />
+					
+				</div>
+				<?
+					}
+				?>
+				
 			</td>
+			
+<!-- Document Viewer Application (psview-0.3 -->
+
+
 			
 <!-- Chat Application -->			
 			<td id="chatApplication" align="center" valign="top">
@@ -187,6 +264,8 @@ if(isset($_SESSION['username'])){
 <!-- Bottom Tabs --> 	
 
  	<ul id="pfc_channels_list"></ul>
-
+<?php
+	}
+?>
 	</body>  
 </html>  

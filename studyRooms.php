@@ -1,4 +1,4 @@
-<center><u style='font:16px Tahoma, Sans-serif;color:#ff6347;position:relative;left:15px;' >Study Groups</u></center>
+<center><u style='font:16px Tahoma, Sans-serif;color:#c34500;position:relative;left:17px;text-decoration:none;' >Study Groups</u></center>
 <p align="left">	
 <?php
 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
@@ -24,12 +24,12 @@ session_start();
 		$num = getNumberOfUsers($_SESSION['major']);
 		$number = getNumberOfUsers("OSU Chat");
 		if($number > 0){
-			echo "<tr><td><a class='studyRoom' name='OSU Chat' onclick=\"pfc.sendRequest('/join ". "OSU Chat" . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;' href='javascript:void(0);'>". "  OSU Chat". "</a></td><td align='right' style='color:red'>  " . $number."</td></tr>";
+			echo "<tr><td><a class='studyRoom' name='OSU Chat' onclick=\"pfc.sendRequest('/join ". "OSU Chat" . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;' href='javascript:void(0);'>". "  OSU Chat". "</a></td><td align='right' style='color:#c34500'>  " . $number."</td></tr>";
 		}else{
 			echo "<tr><td><a class='studyRoom' name='OSU Chat' onclick=\"pfc.sendRequest('/join ". "OSU Chat" . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;' href='javascript:void(0);'>". "  OSU Chat". "</a></td><td align='right'>  " . $number."</td></tr>";
 		}
 		if($num > 0){
-			echo "<tr><td><a class='studyRoom' name='". $_SESSION['major'] ."' onclick=\"pfc.sendRequest('/join ". $_SESSION['major'] . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;cursor:pointer;'>". $_SESSION['major']. "</a></td><td align='right' style='color:red'>  " . $num."</td></tr>";
+			echo "<tr><td><a class='studyRoom' name='". $_SESSION['major'] ."' onclick=\"pfc.sendRequest('/join ". $_SESSION['major'] . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;cursor:pointer;'>". $_SESSION['major']. "</a></td><td align='right' style='color:#c34500'>  " . $num."</td></tr>";
 		}else{
 			echo "<tr><td><a class='studyRoom' name='". $_SESSION['major'] ."' onclick=\"pfc.sendRequest('/join ". $_SESSION['major'] . "')\"style='font:14px Tahoma, Sans-serif; text-decoration:none;color:black;cursor:pointer;'>". $_SESSION['major']. "</a></td><td align='right'>  " . $num."</td></tr>";
 		}
@@ -42,7 +42,7 @@ session_start();
 		$class = $row["class_name"] . ' Sec. ' . $row['section'];
 		$num = getNumberOfUsers($class);
 		if($num > 0){
-			echo "<tr><td><a title='Remove Class' href='#' onClick=\"removeClass('". $class ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $class ."' title='" . $row['description'] . "' onclick=\"pfc.sendRequest('/join ". $class . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $class ."</a></td><td align='right' style='color:red'> " . $num."</td></tr>";
+			echo "<tr><td><a title='Remove Class' href='#' onClick=\"removeClass('". $class ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $class ."' title='" . $row['description'] . "' onclick=\"pfc.sendRequest('/join ". $class . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $class ."</a></td><td align='right' style='color:#c34500'> " . $num."</td></tr>";
 		}else{
 			echo "<tr><td><a title='Remove Class' href='#' onClick=\"removeClass('". $class ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $class ."' title='" . $row['description'] . "' onclick=\"pfc.sendRequest('/join ". $class . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $class ."</a></td><td align='right'> " . $num."</td></tr>";
 		}
@@ -58,7 +58,7 @@ session_start();
 		//$group = split('-', $group);
 		$num = getNumberOfUsers(trim($group));
 		if($num > 0){
-			echo "<tr><td><a title='Remove Group' href='#' onClick=\"removeGroup('". $group ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $group ."' onclick=\"pfc.sendRequest('/join ". $group . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $row['group_name']. "</a></td><td align='right' style='color:red';> " . $num."</td></tr>";
+			echo "<tr><td><a title='Remove Group' href='#' onClick=\"removeGroup('". $group ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $group ."' onclick=\"pfc.sendRequest('/join ". $group . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $row['group_name']. "</a></td><td align='right' style='color:#c34500';> " . $num."</td></tr>";
 		}else{
 			echo "<tr><td><a title='Remove Group' href='#' onClick=\"removeGroup('". $group ."');loadStudyRooms('". $username ."');\" style='color:red;text-decoration:none;position:relative;bottom:1px'><img src='images/delete.gif' /> </a><a class='studyRoom' name='". $group ."' onclick=\"pfc.sendRequest('/join ". $group . "')\"style='font:14px Tahoma, Sans-serif;text-decoration:none;color:black;cursor:pointer;'>". $row['group_name']. "</a></td><td align='right'> " . $num."</td></tr>";
 		}

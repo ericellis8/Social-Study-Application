@@ -4,6 +4,8 @@ mysql_select_db("social_study_groups") or die(mysql_error());
 session_start();
 $user = $_POST['username'];
 $password = $_POST['password'];
+//$user = phpCAS::getUser();
+//$password = 'password';
 $query = "Select * from user where user_name = '$user' and password = '$password'";
 $result = mysql_query($query);
 $row = mysql_fetch_array($result);
@@ -15,8 +17,7 @@ if(mysql_num_rows($result) > 0){
 }
 ?>
 
-
 <?php
 header("Location: index.php?");
 exit;
-?>
+?> 

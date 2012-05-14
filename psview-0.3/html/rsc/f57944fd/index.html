@@ -1,0 +1,178 @@
+<A HREF="../../index.php?room=CS 463 Sec. 1" >Upload a new file</A>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML 2.2//EN" "http://www.abisource.com/2004/xhtml-awml/xhtml-awml.mod">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:awml="http://www.abisource.com/2004/xhtml-awml/">
+ <head>
+  <!-- ======================================================= -->
+  <!-- Created by AbiWord, a free, Open Source wordprocessor.  -->
+  <!-- For more information visit http://www.abisource.com.    -->
+  <!-- ======================================================= -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>f57944fd.html</title>
+  <style type="text/css">
+   <!--
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}@media print, projection, embossed {
+	body {
+		padding-top:1.000000in;
+		padding-bottom:1.000000in;
+		padding-left:1.250000in;
+		padding-right:1.250000in;
+	}
+}
+body {
+	font-size:12.000000pt;
+	font-family:'Times New Roman';
+}
+table {
+}
+td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:top;
+}
+     -->
+  </style>
+ </head>
+ <body>
+  <div>
+   <p style="text-align:right"><span style="font-family:'Courier New'">Eric Ellis</span></p>
+   <p style="text-align:right"><span style="font-family:'Courier New'">CS 440</span></p>
+   <p style="text-align:right"><span style="font-family:'Courier New'">Assignment #2</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">4.10)</span></p>
+   <p><span style="font-family:'Courier New'">a)</span></p>
+   <p><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Fname,Minit,Lname</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">employee.Dno=5,employee.Ssn=works_on.Essn,works_on.Hours&gt;10.0,works_on.Pno</span><span style="font-size:14pt;font-family:'Courier New';vertical-align:sub">=</span><span style="font-size:14pt;font-family:'Courier New'">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Pnumber</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Pname=&#146;ProductX&#146;</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">Project))EMPLOYEE,PROJECT,WORKS_ON)</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select distinct Fname, Minit, Lname from employee, project, works_on where employee.Dno = 5 AND employee.Ssn = works_on.Essn AND works_on.Hours &gt; 10.0 AND works_on.Pno = (select Pnumber from project where Pname='ProductX');</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">+-------+-------+---------+</span></p>
+   <p><span style="font-family:'Courier New'">| Fname | Minit | Lname &nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">+-------+-------+---------+</span></p>
+   <p><span style="font-family:'Courier New'">| John &nbsp;| B &nbsp;&nbsp;&nbsp;&nbsp;| Smith &nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">| Joyce | A &nbsp;&nbsp;&nbsp;&nbsp;| English |</span></p>
+   <p><span style="font-family:'Courier New'">+-------+-------+---------+</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">b)</span></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Fname,Minit,Lname</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Ssn=Essn,Fname=Dependent_name</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">Employee,Dependent)</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select Fname, Minit, Lname from employee, dependent where Ssn=Essn and Fname=Dependent_name;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">Empty set;</span></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">c)</span></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">e1.Fname,e1.Minit,e1.Lname</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">e1.Super_ssn=e2.Ssn,e2.Fname=&#146;Franklin&#146;,e2.Lname=&#146;Wong&#146;</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">Employee</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">1</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">,Employee</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">2</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">)</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select e1.Fname, e1.Minit, e1.Lname from employee as e1, employee as e2 where e1.Super_ssn = e2.Ssn and e2.Fname = 'Franklin' and e2.Lname = 'Wong';</span></p>
+   <p><span style="font-family:'Courier New'">+--------+-------+---------+</span></p>
+   <p><span style="font-family:'Courier New'">| Fname &nbsp;| Minit | Lname &nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">+--------+-------+---------+</span></p>
+   <p><span style="font-family:'Courier New'">| John &nbsp;&nbsp;| B &nbsp;&nbsp;&nbsp;&nbsp;| Smith &nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">| Joyce &nbsp;| A &nbsp;&nbsp;&nbsp;&nbsp;| English |</span></p>
+   <p><span style="font-family:'Courier New'">| Ramesh | K &nbsp;&nbsp;&nbsp;&nbsp;| Narayan |</span></p>
+   <p><span style="font-family:'Courier New'">+--------+-------+---------+</span></p>
+   <p><span style="font-family:'Courier New'">4.12</span></p>
+   <p><span style="font-family:'Courier New'">a)</span></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">name</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Class=4,Major=&#146;CS&#146;</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">Student)</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select name from Student where class=4 and Major = &#145;CS&#146;;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">empty set;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">b)</span></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Course_name</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">year=07,year=08,Instructor=&#146;King&#146;</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">(Course x Section))</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select Course_name from Course, Section where (year=07 or year=08) AND Instructor=&#146;King&#146; and Course.Course_number = Section.Course_numer;</span></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">+----------------------+</span></p>
+   <p><span style="font-family:'Courier New'">| &nbsp;&nbsp;&nbsp;&nbsp;Course_name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">+-------------+--------+</span></p>
+   <p><span style="font-family:'Courier New'">| Discrete Mathematics |</span></p>
+   <p><span style="font-family:'Courier New'">+----------------------+</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">c)</span></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Course_number,semester,year,num_students</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">Instructor=&#146;King&#146;</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">(Section X Grade_report))</span></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">select Course_number,semester,year, Count(gr.section_ identifier) as Num_students from Section as s, Grade_report as gr where Instructor=&#146;king&#146; and s.Section_identifier = gr.Section_identifier;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">+----------------+----------+------+--------------+</span></p>
+   <p><span style="font-family:'Courier New'">| Course_number &nbsp;| semester | year | Num_students |</span></p>
+   <p><span style="font-family:'Courier New'">+----------------+----------+------+--------------+</span></p>
+   <p><span style="font-family:'Courier New'">| &nbsp;&nbsp;&nbsp;&nbsp;Math2410 &nbsp;&nbsp;| &nbsp;&nbsp;Fall &nbsp;&nbsp;| &nbsp;07 &nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|</span></p>
+   <p><span style="font-family:'Courier New'">+----------------+----------+------+--------------+</span></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">d)</span></p>
+   <p></p>
+   <p><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">π</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">name,course_name,course_number,credit,hours,semester,year,grade</span><span style="font-size:16pt;font-family:'Lucida Grande';color:#000000">(</span><span style="font-weight:bold;font-size:16pt;font-family:'Lucida Grande';color:#000000">σ</span><span style="font-size:14pt;font-family:'Lucida Grande';vertical-align:sub;color:#000000">class=4</span><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">Student X Transcript</span><a name="_GoBack" id="_GoBack"></a><span style="font-size:14pt;font-family:'Lucida Grande';color:#000000">))</span></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">Create View Transcript(Course_name,Course_number, Credit,Hours,Semester,Year,Grade,Student_number) as Select Course_name, Course.Course_number, Credit_hours, semester, year, grade,student_number from Course, Section, Grade_report as gr where Course.Course_number = Section.Section_number AND section.Section_identifier = gr.Section_identifier;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">Select name, t.Course_name,t.Course_number,t.Credit, t.Hours, t.Semester,t.Year,t.Grade from Student,Transcript as t where student.student_number = t.student_number and student.class = 4;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">Empty set; </span></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">4.13</span></p>
+   <p><span style="font-family:'Courier New'">a)</span></p>
+   <p><span style="font-family:'Courier New'">INSERT into Student(Name,Student_number,Class,Major)VALUES (&#145;Johnson&#146;,25,1,&#146;Math&#146;);</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">b) </span></p>
+   <p><span style="font-family:'Courier New'">Update Student set class=2 where Name=&#146;Smith&#146;;</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">c)</span></p>
+   <p><span style="font-family:'Courier New'">INSERT into Course(Course_name,Course_number,Credit_hours, Department)VALUES(&#145;Knowledge Engineering&#146;,&#146;CS4390&#146;,3,&#146;CS&#146;);</span></p>
+   <p></p>
+   <p><span style="font-family:'Courier New'">d)</span></p>
+   <p><span style="font-family:'Courier New'">Delete from Student, Grade_report where Name =&#146;Smith&#146; and Grade_report.Student_number = 17;</span></p>
+  </div>
+ </body>
+</html>

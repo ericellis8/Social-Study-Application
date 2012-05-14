@@ -24,11 +24,22 @@
                 $result = mysql_query($query);
 
                 //Current user class list
-                echo "<select id='classUserList'>";
+                echo "<form action='addUserToTable.php' method='post'>";
+		echo "<select id='classUserList'>";
                 while($row = mysql_fetch_array($result)){
                         echo "<option value='" . $row['user_name'] . "'>". $row['user_name'] . "</option>";
                 }
                 echo "</select>";
-        
-	}
+		echo "</form>";
+
+		//button to invite the current user into the new study session
+		echo "<button type='button' onClick=\"addUserToStudySession('')\">Add to study session</button>"; 
+		echo "<br />";
+		
+		//add users here in the table
+		echo "<div id='usersAddedToTable'></div>";
+		echo "</tr>";
+		echo "</table>";
+}
+
 ?>

@@ -1,7 +1,7 @@
 <?
-	$dir_bin = "/home/sajter/view/bin/";
-	$dir_rsc = "/home/cj/www/tmp/";
-	$cmd_convert = "/usr/local/bin/convert";
-	$cmd_wget = "/usr/local/bin/wget";
+	$dir_bin = "/opt/lampp/htdocs/svn/root/psview-0.3/bin";
+	$dir_rsc = "/opt/lampp/htdocs/svn/root/psview-0.3/html/rsc/";
+	$cmd_convert = "/usr/bin/convert";
+	$cmd_wget = "/usr/bin/wget";
 	$cmd_file = "/usr/bin/file";
 ?>

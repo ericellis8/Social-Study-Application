@@ -5,6 +5,12 @@ session_start();
 $group_name = $_GET['group_name'];
 $username = $_SESSION['username'];
 
+$checkMember = "Select * from study_groups_users where user_id = (Select user_id from user where user_name = '$username') AND group_id = (Select group_id from study_groups where group_name = '$group_name')";
+$checkMemberResult = mysql_query($checkMember);
+if(mysql_num_rows($checkMemberResult)){
+	return;
+}
+
 $checkGroup = "Select * from study_groups where group_name = '$group_name'";
 $checkGroupResult = mysql_query($checkGroup);
 if(mysql_num_rows($checkGroupResult) ==  0){

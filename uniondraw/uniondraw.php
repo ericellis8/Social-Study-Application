@@ -22,9 +22,9 @@ html, body {
   background-color: #333333;
   position: absolute;
   top: 35px;
-  border:2px solid #000000
+  cursor: url("../images/cur762.cur"), url(""), auto;
+/*  border:2px solid #000000;*/
 }
-
 #status {
   color: #FFFFFF;
   position: absolute;
@@ -109,7 +109,7 @@ function savePic(file){
 <body>
   <!--Drop down menus for selecting line thickness and color-->
   <div id="controls">
-    <span style="position:relative;bottom:6px;">Pen Size:</span>
+    <span id="pensize" style="position:relative;bottom:6px;font-family: Helvetica, Verdana, sans-serif;font-weight: bold;">Pen Size:</span>
     <select id="thickness" class="fixed">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -122,18 +122,18 @@ function savePic(file){
 
  
     <span id='color'>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#FFFFFF')" src="../images/white.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#ff0000')" src="../images/red.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#228b22')" src="../images/green.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#0000ff')" src="../images/blue.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#ffa500')" src="../images/orange.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#ffff00')" src="../images/yellow.png" /></span>
-    <span><img style="cursor:pointer;" onclick="colorSelectListener('#333333')"src="../images/eraser2.png" /></span>
+    <span><img id='whiteColor' style="cursor:pointer;" onclick="colorSelectListener('#FFFFFF')" src="../images/whiteSelected.png" /></span>
+    <span><img id='redColor' style="cursor:pointer;" onclick="colorSelectListener('#ff0000')" src="../images/red.png" /></span>
+    <span><img id='greenColor' style="cursor:pointer;" onclick="colorSelectListener('#228b22')" src="../images/green.png" /></span>
+    <span><img id='blueColor' style="cursor:pointer;" onclick="colorSelectListener('#0000ff')" src="../images/blue.png" /></span>
+    <span><img id='orangeColor' style="cursor:pointer;" onclick="colorSelectListener('#ffa500')" src="../images/orange.png" /></span>
+    <span><img id='yellowColor' style="cursor:pointer;" onclick="colorSelectListener('#ffff00')" src="../images/yellow.png" /></span>
+    <span><img id='eraserColor' style="cursor:pointer;" onclick="colorSelectListener('#333333')"src="../images/eraser2.png" /></span>
     </span>
   </div>
   
   <!--The canvas where drawings will be displayed-->
-  <canvas style="cursor:crosshair;" id="canvas"></canvas>
+  <canvas style="" id="canvas"></canvas>
   
   <!--A status text field, for displaying connection information-->
   <div id="status"></div>

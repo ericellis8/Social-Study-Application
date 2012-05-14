@@ -1,0 +1,147 @@
+function logOut(){
+	pfc.sendRequest('/quit');
+	window.location = "logout.php";
+}
+
+function getUser(){
+	var li = pfc.buildNickItem('904cb17acbe02c2ad452f5be0901e317d031502f');
+	document.getElementById('buddyList').appendChild(li);
+}
+function changeName(nick){
+	pfc.sendRequest('/nick ' + nick);
+}
+
+function loadStudyRooms(username)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("studyRoom").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","studyRooms.php?username="+username,true);
+xmlhttp.send();
+}
+function getBuddyList(username)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("buddyList").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","buddyList.php?username="+username,true);
+xmlhttp.send();
+}
+function newStudySession()
+{
+var newSessionPopUp = document.getElementById('newStudySession');
+newSessionPopUp.style.display = '';
+var newSessionPopUp = document.getElementById('blur');
+newSessionPopUp.style.display = '';
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("newStudySession").innerHTML=xmlhttp.responseText;
+    }
+  }
+xmlhttp.open("GET","newStudySession.php",true);
+xmlhttp.send();
+}
+var showhide_status = false;
+function swap_show_hide()
+  {
+    if (showhide_status) {
+      showhide_status = false;
+    } else {
+      showhide_status = true;
+    }
+    this.refresh_show_hide();
+  }
+function refresh_show_hide()
+  {
+   	var showhide     = $('showhide');    
+    var left_bar = $('left_bar');
+    var showhide2 = $('showhide2');
+    var uniondraw = $('udraw');
+    if (showhide_status)
+    { 
+     showhide2.style.display = '';
+     left_bar.style.display = 'none';
+     uniondraw.style.top = '11px';
+     uniondraw.width= '600px';
+    }
+    else
+    {
+     left_bar.style.display = '';
+     showhide2.style.display = 'none';
+     uniondraw.style.top = '35px';
+     uniondraw.width= '500px';
+    }
+  }
+var buddiesClickedOn = new Array();
+function beginSession(){
+	var sessionName = document.getElementById('sessionName');
+	if(sessionName.value != ""){
+		pfc.sendRequest("/join "+sessionName.value);
+		for(var i=0;i<buddiesClickedOn.length;i++){
+			pfc.sendRequest("/invite "+buddiesClickedOn[i] + " \"" + sessionName.value + "\"");
+		}
+		var newSessionPopUp = document.getElementById('newStudySession');
+		newSessionPopUp.style.display = 'none';
+		var newSessionPopUp = document.getElementById('blur');
+		newSessionPopUp.style.display = 'none';
+	}else{
+		alert("Please enter a name for the session");
+	}
+}	
+
+
+function clickedOn(buddyClickedOn){
+	var id=document.getElementById(buddyClickedOn);
+	id.style.backgroundColor = "green";
+	buddiesClickedOn.push(buddyClickedOn);
+}
+
+function closeNewSession(){
+	var newSessionPopUp = document.getElementById('newStudySession');
+	newSessionPopUp.style.display = 'none';
+	var newSessionPopUp = document.getElementById('blur');
+	newSessionPopUp.style.display = 'none';
+    buddiesClickedOn = new Array();
+}
+
+function searchClasses(){
+    var studyRoom = document.getElementById('classSearch');
+    
+}

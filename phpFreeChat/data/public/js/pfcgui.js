@@ -63,6 +63,30 @@ pfcGui.prototype = {
     return (indexOf(this.tabids, tabid) >= 0);
   },
   
+
+ documentViewer: function(room)
+{
+var xmlhttp;
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    document.getElementById("docViewer").innerHTML=xmlhttp.responseText;
+    refresh_show_hide();
+    }
+  }
+xmlhttp.open("GET","newPsView.php?room="+room,true);
+xmlhttp.send();
+},
+
   changeDraw: function(room)
 {
 var xmlhttp;
@@ -79,6 +103,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("uniondraw").innerHTML=xmlhttp.responseText;
+    refresh_show_hide();
     }
   }
 xmlhttp.open("GET","newUnionDraw.php?room="+room,true);
@@ -101,6 +126,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
     document.getElementById("newsfeed").innerHTML=xmlhttp.responseText;
+    refresh_show_hide();
     }
   }
 xmlhttp.open("GET","newsfeed.php",true);
@@ -198,11 +224,18 @@ xmlhttp.send();
         document.getElementById("save_group").style.display = "none";
         document.getElementById("uniondraw").style.display = "none";
         document.getElementById("newsfeed").style.display = "";
+		document.getElementById("docViewer").style.display = "none";
+		document.getElementById("switchDocDraw").style.display = "none";
         pfc.gui.loadNewsFeed();
     }else{
          document.getElementById("save_group").style.display = "";
          document.getElementById("uniondraw").style.display = "";
          document.getElementById("newsfeed").style.display = "none";
+	 	 document.getElementById("docViewer").style.display = "none";
+	 	 document.getElementById("switchDocDraw").style.display = "";
+	 	 document.getElementById('showWhiteBoard').src = "images/whiteboardSelected.png";
+		 document.getElementById('showDoc').src = "images/docViewer.png";
+		 pfc.gui.documentViewer(this.current_tab);
          pfc.gui.checkClassOrGroup(this.current_tab);
          pfc.gui.changeDraw(tabid);
     }
@@ -212,7 +245,7 @@ xmlhttp.send();
         var title = document.getElementById("pfc_title").innerHTML;
         for(var i =0; i < roomLength; i++){
             if(study_room[i].name == title){
-                study_room[i].style.color = "#ff6347";
+                study_room[i].style.color = "#c34500";
             }else{
                 study_room[i].style.color = "black";
             }

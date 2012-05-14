@@ -44,28 +44,27 @@
 	$starttime = microtime();
 
 	/* Url or File? */
-	 if(is_array($HTTP_POST_FILES) && $HTTP_POST_FILES["file"]["name"] != "") {
+	if(is_array($_FILES) && $_FILES["file"]["name"] != "") {
 		/* File upload */
 
 		/* Always new rsc */
 		$tmpRsc = new Rsc;
 		$tmpRsc->RscMD5 = new_id();
-		$tmpRsc->RscName = $HTTP_POST_FILES["file"]["name"];
+		$tmpRsc->RscName = $_FILES["file"]["name"];
 		$tmpRsc->IsURL = 0;
-
-		$tmpFname = $dir_rsc."/".$tmpRsc->RscMD5.".infile";
-
-		if (copy($HTTP_POST_FILES["file"]["tmp_name"], $tmpFname) ) {
-			echo "<!-- ok -->";
-
+		$tmpFname = $dir_rsc."".$tmpRsc->RscMD5.".infile";
+		echo "<BR>it is ". $_FILES["file"]["tmp_name"];
+		echo "<BR> this is ". $tmpFname;
+		if (copy($_FILES["file"]["tmp_name"], $tmpFname) ) {
+			echo "<!-- ok -->";	
 			/* Perform file voodoo (possible unzip and file type determination) */
 			fetch_try_unzip($tmpFname);
 
 			$tmpRsc->RscTypeID = rsc_type($tmpFname);
 			$tmpRsc->InCache = -1; // If not failed ...
 			$tmpRsc->Size = filesize($tmpFname);
-				
 			$add_rsc = true;
+			chmod($tmpFname, 0777);
 		} else {
 			$tmpRsc->InCache = 0;
 			$add_rsc = true;
@@ -122,7 +121,7 @@
 		}
 	}
 
-	if($add_rsc) {
+	if($add_rsc) {	
 		/* Add $tmpRsc to Rsc */
 		$sql = "INSERT INTO Rsc";
 		$sql .= " (RscMD5, RscTypeID, RscName, IsURL, InCache, Size)";
@@ -149,6 +148,7 @@
 	}
 
 	$stoptime = microtime();
+	
 
 	/* Tell rscfetch about this fetch */
 	$host = mysql_escape_string(substr(GetEnv("REMOTE_HOST"), 0, 254));
@@ -177,7 +177,7 @@
 						$ip
 					);
 
-#	echo $sql."<BR>";
+	echo $sql."<BR>";
 	$q = mysql_query($sql);
 
 ?>

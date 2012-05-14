@@ -9,18 +9,16 @@
 <?php
                 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
         mysql_select_db("social_study_groups") or die(mysql_error());
-                $major = $_GET['major'];
+                $search = $_GET['search'];
 if($search != ''){
-    $query = "Select user from user where major='$major'";
+    $query = "Select distinct user_name from user where user_name LIKE '%$search%'";
         $result = mysql_query($query);
         if(mysql_num_rows($result) == 0){
-                echo "No users in " . $major " .";
+                echo "No users";
         }else{
-		echo "<select>";
                 while($row = mysql_fetch_array($result)){
-                        echo "<option value='$row'>" . $row . "</option>";
-                }
-		echo "</select>";
+	        echo "<a id='anyoneSearchResultsIndividual' style='cursor:pointer;color:blue' onclick=\"addAnyUserToSession('".$row['user_name']."')\">" . $row['user_name'] . "</a><BR>";
+		}
         }
 }
 

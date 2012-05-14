@@ -18,8 +18,12 @@
 <!--</td>
 </tr>
 </table>-->
-  <div id="pfc_input_container">
 
+  <div id="pfc_input_container">
+  	<div style="position:relative;bottom:0px;">
+  		<HR>
+  	</div>
+<!--<HR style="position:relative;bottom:0px;>-->
     <table style="margin:0;padding:0;border-collapse:collapse;">
       <tbody>
       <tr>
@@ -110,9 +114,11 @@
       </div>
       <?php } ?>
 
-    </div>
+    <!-- commented out to move bold, italics, etc. to same line as stuff above
+</div>
 
     <div id="pfc_bbcode_container">
+ -->
       <div id="pfc_bt_strong_btn" class="pfc_btn">
         <img src="<?php echo $c->getFileUrlFromTheme('images/bt_strong.gif'); ?>"
              id="pfc_bt_strong"
@@ -163,6 +169,7 @@
              class="pfc_bt_color"
              onclick="pfc.minimize_maximize('pfc_colorlist','inline')" />
       </div>
+      </div> <!-- moved this here to move bold, italics, etc. on same line as things above-->
       <div id="pfc_colorlist"></div>
     </div> <!-- pfc_bbcode_container -->
 

@@ -1,4 +1,4 @@
-<Files "*.infile">
+<Files "*.out">
     Order allow,deny
     Deny from all
     Satisfy All

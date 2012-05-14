@@ -2,17 +2,17 @@
 .no-js nav li:hover ul { display:block; }
 
 /* base nav styles */
-nav { display:block; margin:0 auto 10px; border:1px solid #222; position:fixed;top:0;left:0;width:100%;z-index:997;background-color:black/*#6a6a6a*/; font:16px Tahoma, Sans-serif; }
+nav { display:block; margin:0 auto 10px; border:2px solid #222; position:fixed;top:0;left:0;width:100%;z-index:997;background-color:#252525/*#6a6a6a*/; font:16px Soho, Sans-serif; }
 nav ul { padding:1; margin:0; }
-nav li { position:relative; float:left; list-style-type:none; }
+nav li { position:relative;top:2px; float:left; list-style-type:none; }
 nav li:hover{
 background-color:#303030;
 }
 nav ul:after { content:"."; display:block; height:0; clear:both; visibility:hidden; }
 nav li a { display:block; padding:10px 30px; border-left:1px solid #999; border-right:1px solid #222; color:#eee; text-decoration:none; }
 nav li a:focus { outline:none; text-decoration:underline; }
-nav li.first-child a { border-left:none;color:#ff6347 }
-nav li.last a { border-right:none; }
+nav li.first-child a { border-left:none;color:#c34500 }
+nav li.last a { border-right:1px solid #222; }
 nav a span { display:block; float:right; margin-left:5px; }
 nav ul ul { padding:0;display:none; width:100%; position:absolute; left:0; background:black; }
 nav ul ul li { float:none; }

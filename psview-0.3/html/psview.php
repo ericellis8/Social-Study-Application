@@ -1,14 +1,18 @@
 <HTML><HEAD><TITLE>Online viewer</TITLE></HEAD>
-<BODY BGCOLOR="FFFFFF">
+<BODY BGCOLOR="F2F2F2">
 <PRE><? 
 	# Ought to check whether the rsc is in cache. If not, and it is a url, then it is feasible to fetch it.	
 	# All it can do now, is to render, if the components have been cleaned out.
-
-   include("rsc.class.inc");
-   include("const.inc");
-   include("func.inc");
-   include("db.inc");
-
+   include("../inc/rsc.class.inc");
+   include("../inc/const.inc");
+   include("../inc/func.inc");
+   include("../inc/db.inc");
+	$id = $_GET['id'];
+	$page = $_GET['page'];
+	$ori = $_GET['ori'];
+	$all = $_GET['all'];
+	$size = $_GET['size'];
+	$room = $_GET['room'];
 	if(isset($id) && ereg("^[0-9a-f]{8}$", $id)) { # Validate $id
 		$view=1;
 	} else {
@@ -25,7 +29,6 @@
 
 	if($view) {
 		/* Let's see if there's a resource matching the MD5 */
-
 		$sql = "SELECT * FROM Rsc WHERE RscMD5='$id' AND InCache=-1";
 		$qRsc = mysql_query($sql);
 		if(!$tmpRsc = mysql_fetch_object($qRsc)) {
@@ -87,17 +90,15 @@ if($view) {
 <TR VALIGN=TOP>
 <TD WIDTH=130 VALIGN=TOP>
 <!-- Nav -->
-	<A HREF="/">Viewer home</A>
-</TD>
-<TD WIDTH=630 ALIGN=LEFT>Click on page to switch between small and large images
+	<A HREF="index.php?room=<?php echo $room; ?>">Upload a new file</A> <span style="position:relative;left:40px;">Click on document to enlarge</span>
 </TD>
 </TR>
 <TR VALIGN=TOP><TD VALIGN=TOP>
 	<PRE><?
-		echo "  \" \"\n <@ @>\n\n";
+		//echo "  \" \"\n <@ @>\n\n";
 	 	if($page>1) {
 			$prev_page=$page-1;
-			echo "<A HREF=\"psview.php?id=$id&page=$prev_page";
+			echo "<A HREF=\"psview.php?id=$id&page=$prev_page&room=$room";
 			if($dofull) {
 				echo "&size=full";
 			}
@@ -105,14 +106,15 @@ if($view) {
 				echo "&ori=".$ori; 
 			}
 			echo "\">&lt;--</A>";
+			//echo "\"><img src='../../images/leftArrow.png' /></A>";
 		} else
 			echo "&lt;--";
-
+			//echo "<img src='../../images/leftArrow.png' />";
 		echo " ";
 
  		if($page<$num_comp) {
 			$next_page=$page+1.0;
-			echo "<A HREF=\"psview.php?id=$id&page=$next_page";
+			echo "<A HREF=\"psview.php?id=$id&page=$next_page&room=$room";
 			if($dofull) {
 				echo "&size=full";
 			}
@@ -120,11 +122,14 @@ if($view) {
 				echo "&ori=".$ori; 
 			}
 			echo "\">--&gt;</A>";
+			//echo "\"><img src='../../images/rightArrow.png' /></A>";
+
 		} else
 			echo "--&gt;";
+			//echo "<img src='../../images/rightArrow.png' />";
 		
-		echo "\n\n";		
-
+		//echo "\n\n";		
+		echo "   ";
 		while ($comp = mysql_fetch_object($qRscComp)) {
 			$img = "tmp".$comp->Position;
 			if($ori != 0)
@@ -132,7 +137,7 @@ if($view) {
 			$img .= ".gif";
 			$comp_id = $comp->RscCompID;
 
-			$link = "psview.php?id=$id&page=".$comp->Position;
+			$link = "psview.php?id=$id&room=$room&page=".$comp->Position;
 			if($dofull)
 				$link .= "&size=full";
 			if($ori != 0) 
@@ -147,30 +152,31 @@ if($view) {
 				echo "   ";
 			}
 
-			echo "<A HREF=\"".$link."\">".$comp->Position."</A><BR>";
-        	} ?></PRE>Show this<br>document<br>to a friend
+			echo "<A HREF=\"".$link."\">".$comp->Position."</A>";
+        	} ?><!--</PRE>Show this<br>document<br>to a friend
 	<FORM ACTION="psmail.php" METHOD="GET">
 		<input type=hidden name=id value="<? echo $id; ?>">
 		<input type=hidden name=page value="<? echo $page; ?>">
 		<INPUT NAME="email" SIZE=13 TYPE="text" VALUE="email here"><BR>
 		<INPUT NAME="submit" TYPE="submit" VALUE="Send mail!"><BR>
 	</FORM>
-	<PRE><?
-			echo "<A HREF=\"psview.php?id=$id&page=".$page;
+	<PRE>--><?
+			echo "   ";
+			echo "<A HREF=\"psview.php?id=$id&room=$room&page=".$page;
 			if($dofull) {
 				echo "&size=full";
 			}
 			echo "&ori=".$ori_clockwise;
-			echo "\">Rotate right</A><BR>";
-
-			echo "<A HREF=\"psview.php?id=$id&page=".$page;
+			echo "\">Rotate right</A>";
+			echo "   ";
+			echo "<A HREF=\"psview.php?id=$id&room=$room&page=".$page;
 			if($dofull) {
 				echo "&size=full";
 			}
 			echo "&ori=".$ori_counterclockwise;
-			echo "\">Rotate left</A><BR>";
-
-			echo "<A HREF=\"psview.php?id=$id&page=".$page;
+			echo "\">Rotate left</A>";
+			echo "   ";
+			echo "<A HREF=\"psview.php?id=$id&room=$room&page=".$page;
 			if($dofull) {
 				echo "&size=full";
 			}
@@ -180,18 +186,19 @@ if($view) {
 			echo "\">View all</A><BR>";
 	?></PRE>
 </TD>
+</tr><tr>
 <TD ALIGN=LEFT><?
 	if(!isset($all)) { // One page only
 ?>
 	<A HREF="psview.php?id=<? 
-		echo $id."&page=".$page; 
+		echo $id."&room=$room&page=".$page; 
 		if(!$dofull) { 
 			echo "&size=full"; 
 		}
 		if($ori != 0) { 
 			echo "&ori=".$ori; 
 		}
-    ?>"><IMG BORDER=0 SRC="<? echo $web_path.$web_file; ?>" <? if(!$dofull) { echo "WIDTH=630"; } ?>></A>
+    ?>"><IMG BORDER=1 SRC="<? echo $web_path.$web_file; ?>" <? if(!$dofull) { echo "WIDTH=570"; } ?>></A>
 <?
 	} else { // All pages?
 		foreach($comps as $key=>$val) {
@@ -200,8 +207,8 @@ if($view) {
 				echo "&size=full"; 
 			}
 			echo "\">";
-			echo "<IMG BORDER=0 SRC=\"".$web_path.$val[1]."\"";
-			if(!$dofull) { echo " WIDTH=630"; }
+			echo "<IMG BORDER=1 SRC=\"".$web_path.$val[1]."\"";
+			if(!$dofull) { echo " WIDTH=570"; }
 			echo "></A><BR>";
 		}
 	}
@@ -234,7 +241,17 @@ if($view) {
 
 #DEB	echo $sql."<BR>";
 	$q = mysql_query($sql);
-
+	if($page == '1' && isset($_GET['room'])){
+		$query = "Select * from doc_files where room_id = '$room'";
+		$result = mysql_query($query);
+		if(mysql_num_rows($result) > 0){
+			$query = "Update doc_files SET rsc_id = '$id' where room_id = '$room'";
+			mysql_query($query);
+		}else{
+			$query = "Insert into doc_files(rsc_id,room_id) VALUES('$id','$room')";
+			mysql_query($query) or die(mysql_error());
+		}
+	}
    } else { ?>
 	Could not view this page
 <? } ?>

@@ -1,0 +1,85 @@
+<?php
+mysql_connect("localhost","mia","soulskater") or die(mysql_error());
+mysql_select_db("social_study_groups") or die(mysql_error());
+session_start();
+
+$currentuser = $_GET['username'];
+if($currentuser == ''){
+	$currentuser = $_SESSION['username'];
+}
+
+$announcementSQL = "SELECT `announcement` from `news_feed` where TO_DAYS(now()) < TO_DAYS(timestamp) + 1";
+$announcementResult=mysql_query($announcementSQL) or die(mysql_error());
+
+$groupSQL = "SELECT `user_name` from `user` where 'timestamp' > 'user.logoff_time'";
+$groupResult=mysql_query($announcementSQL) or die(mysql_error());
+
+$friendSQL = "SELECT `announcement` from `news_feed` where 'timestamp' > 'user.logoff_time'";
+$friendResult=mysql_query($announcementSQL) or die(mysql_error());
+?>
+
+<center><B style='font:20px Tahoma, Sans-serif;'>News</B></center>
+<p align="left">	
+
+<!-- Admin announcements table -->
+
+<table border="0" style='font:15px Tahoma, Sans-serif'>
+<tr>
+<th align = "left">Announcements</th>
+</tr>
+<ul>
+<?php
+while($row=mysql_fetch_array($announcementResult))
+{
+	echo '<ul>';
+	echo '</td><td><li>';
+	echo $row['announcement'];
+	echo '</td></tr></li>';
+}
+
+echo "</ul></table>";
+?>
+
+<br>
+
+<!-- Study Requests Table -->
+<!--
+<table border="0" style='font:15px Tahoma, Sans-serif'>
+<tr>
+<th align="left">Study Requests</th>
+</tr>
+
+
+<?php
+while($row=mysql_fetch_array($groupResult)){
+	echo '<ul>';
+	echo '</td><td><li>';
+	echo $row['announcement'];
+	echo "</td></tr>";
+}
+echo "</table>";
+?>
+-->
+
+<br>
+
+<!-- Friend Requests Table -->
+<!--
+<table border="0" style='font:15px Tahoma, Sans-serif'>
+<tr>
+<th align="left">Friend Requests</th>
+</tr>
+
+<?php
+while($row=mysql_fetch_array($friendResult)){
+	echo '<ul>';
+	echo '</td><td><li>';
+	echo $row['announcement'];
+	echo "</td></tr>";
+}
+echo "</table>";
+?>
+-->
+
+
+

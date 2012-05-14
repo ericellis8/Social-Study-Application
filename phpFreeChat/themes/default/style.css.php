@@ -9,7 +9,8 @@ div#pfc_container {
   color: #000;
   padding: 10px;
   min-height: 20px;
-  background-color: #FFF;
+  min-width: 350px;
+  background-color: #f2f2f2;
   background-image: /*url("<?php echo $c->getFileUrlFromTheme('images/background.gif'); ?>");*/
   background-position: right;
 /*  background-repeat: repeat-xy;*/
@@ -35,7 +36,7 @@ div#pfc_channels_content {
   border-right: 1px solid #555;
    border-top: 1px solid #555;
   border-left: 1px solid #555;
-  border-bottom: 1px solid #555;
+  border-bottom: 0px solid #555;
   background-color: #FFF;
   height: <?php echo ($c->height!=''?$c->height:'300px'); ?>;
 }
@@ -143,11 +144,11 @@ div.pfc_online {
   top: 0;
   overflow: auto;
   width: 20%;
+  min-width:100px;
 /* WARNING: do not fix height in % because it will display blank screens on IE6 */
 /*  height: 100%;*/
   color: #000; /* colors can be overriden by js nickname colorization */
   background-color: #FFF;
-
   /* borders are drawn by this image background */
   background-image: url("<?php echo $c->getFileUrlFromTheme('images/online-separator.gif'); ?>");
   background-position: left;
@@ -185,7 +186,7 @@ h2#pfc_title {
   position:relative;
   /*right:220px;*/
   bottom:5px;
-  color:#ff6347;
+  color:#c34500;
 }
 
 img#pfc_minmax {
@@ -223,6 +224,8 @@ span.pfc_nick {
 
 div#pfc_input_container {
   margin: 5px 0 0 0; padding: 0;
+  position:relative;
+  bottom:8px;
 }
 div#pfc_input_container input {
   margin: 0; padding: 0;

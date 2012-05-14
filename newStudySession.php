@@ -69,11 +69,11 @@ function beginSession(){
 </script>
 </head>
 <body>
-
+<center>
 <div class="newStudySession">
 <form>
 <a style="cursor:pointer;" onclick="closeNewSession()"><img align="right" src="images/x.png" /></a><BR>
-<h1 align="center">Begin A New Study Session!</h1>
+<h1 align="center">Begin A New Study Session</h1>
 <h3>Step 1: Enter the Name of the Study Session</h3>
 <input id="sessionName" type="text" name="sessionName" /><br />
 <h3>Step 2: Select Study Buddies to Invite</h3>
@@ -89,7 +89,7 @@ for ($i=0; $i<sizeof($userArray); $i++) {
 	if($i == 3){
 		echo "</tr><tr>";
 	}
-	echo "<td style='background-color:red;cursor:pointer;' id='" . $userArray[$i] . "' onclick=\"clickedOn('" . $userArray[$i] . "')\">" . $userArray[$i] . "</td>";
+	echo "<td align='center' style='background-color:#C34500;cursor:pointer;' id='" . $userArray[$i] . "' onclick=\"clickedOn('" . $userArray[$i] . "')\">" . $userArray[$i] . "</td>";
 
 }
 echo "</tr></table>";
@@ -97,7 +97,7 @@ echo "</tr></table>";
 <br />
 And/or select students to join the session from...<br /><br />
 </div>
-
+</center>
 <div class="select">
 <form>
 <input type="radio" name="select" value="class" onclick="yourClasses('<?php echo $username; ?>')" /> A class<br />
@@ -105,17 +105,16 @@ And/or select students to join the session from...<br /><br />
 <input type="radio" name="select" value="major" onclick='displayMajorSearchBar()' /> A subject/major<br />
 <div style="display:none" id="majorSearch" align="center">
 <img id="newSessionSearchBox" src="images/searchBox.png" width="60">
-        <img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="majorSearchValue" type="text" size="60" onKeyUp="searchMajors()" value=""/>
-        <div style="display:none" id="newSessionSearchResults"></div>
+        <img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="majorSearchValue" type="text" size="60" style="position:relative;top:3px;left:10px;background-color:#DDD;border:0;" onKeyUp="searchMajors()" value=""/>
+        <div style="display:none" id="majorSearchResults"></div>
 	<div style="display:none" id="usersInMajor"></div>
 </img>
 </div>
 <input type="radio" name="select" value="search" onclick='displaySearchAnyone()' /> Search for someone<br />
 <div style="display:none" id="anyoneSearch" align="center">
 <img id="newSessionSearchBox" src="images/searchBox.png" width="60">
-        <img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="searchAnyone" type="text" size="60" onKeyUp="searchAnyone()" value=""/>
-        <div style="display:none" id="newSessionSearchResults"></div>
-	<div style="display:none" id="usersInMajor"></div>
+        <img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="searchAnyoneValue" type="text" size="60" style="position:relative;top:3px;left:10px;background-color:#DDD;border:0;" onKeyUp="searchAnyone()" value=""/>
+        <div style="display:none" id="anyoneSearchResults"></div>
 </img>
 </div>
 <br />
@@ -123,6 +122,15 @@ And/or select students to join the session from...<br /><br />
 </div> 
 </form>
 <br />
+
+<table align='center' border='0' cellpadding='0' cellspacing='0' class='usersAdded'>
+<tr align='center' width='100%'>
+<td style='background-color:green' width='33%'>
+<div id='addToUserTable'></div>
+</td>
+</tr>
+</table>
+
  
 <center><button type="button" class="button" onclick="beginSession()" />Begin The Study Session!</button></center>
 </body>
