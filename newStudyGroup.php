@@ -123,7 +123,7 @@ And/or select students to join the session from...<br /><br />
 </form>
 <br />
 
-<table align='center' border='0' cellpadding='0' cellspacing='0' class='usersAdded'>
+<table width='350px' align='center' border='0' cellpadding='0' cellspacing='0' class='usersAdded'>
 <tr align='center' width='100%'>
 <td style='background-color:green' width='33%'>
 <div id='addToUserTable'></div>

@@ -1,11 +1,11 @@
-<! -- I need to split these queries up and make runs in scripts -->
-
 <?php
 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
 mysql_select_db("social_study_groups") or die(mysql_error());
 session_start();
 
 $currentuser = $_GET['username'];
+//$currentuser = 'yamagucs';
+//$currentuser = phpCAS::getUser();
 if($currentuser == ''){
 	$currentuser = $_SESSION['username'];
 }
@@ -56,11 +56,14 @@ INNER JOIN user
 ON user.user_id = user_permissions.user_id
 WHERE user_permissions.user_id = (SELECT user.user_id from user where user.user_name = '$currentuser')
 ";
+
 $permissionsResult = mysql_query($permissionsLevelSQL) or die(mysql_error());
 $permissionsNumResult = mysql_num_rows($permissionsResult);
-if (permissionsNumResult > 0)
+if ($permissionsNumResult > 0)
 {
-$userPermissions = mysql_result($permissionsResult, 0);
+//$userPermissions = mysql_result($permissionsResult, 0);
+$row =mysql_fetch_array($permissionsResult);
+$userPermissions = $row['permission_id'];
 }
 ?>
 
@@ -91,7 +94,7 @@ echo "</ul></table>";
 <?php
 $level1 = 1;
 
-if($userPermissions <= $level1)
+if($userPermissions <= $level1 && $permissionsNumResult > 0)
 {
 	echo '<div style="margin-left: 20px;">';
 	echo 'Add new announcement: (appears to admin users)';

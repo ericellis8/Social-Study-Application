@@ -20,6 +20,7 @@
 	$users = getNicknames(1);
 	$onlineUserArray = array();
 	$num_users_online = 0;
+	
 	while($row = mysql_fetch_array($result)){
 		$yes = false;
 		for($i = 0; $i<count($users); $i++){
@@ -34,7 +35,8 @@
 		}	
 	}
 	echo " - " . $num_users_online . " Online</u></center>";
-	echo "<BR><span id='here'>";
+	echo "<div style='overflow-y:scroll;max-height:140px;'>";
+	echo "<span id='here' style='position:relative;top:8px;'>";
 	echo "<table width=100%>";
 	foreach($onlineUserArray as $user){
 		echo "<div style='font:15px Tahoma, Sans-serif;color:#c34500;'>";
@@ -53,6 +55,7 @@
 	}
 	echo "</td></tr></table>";
 	echo "</span>";
+	echo "</div>";
 
 ?>
 

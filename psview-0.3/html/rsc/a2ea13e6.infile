@@ -1,0 +1,7 @@
+When profiling is started the kernel sets up a CMOS timer used for profiling. For now on the kernel will write profiling samples consisting of what process name and program counter to the pre-allocated memory.
+	After the pointers are supplied by the profiling call to memory and sprof_info_s the kernel call "SPROF" is made to start profiling. This takes place in system/do_sprofile.c, where the pointers to the info struct are translated into addresses and stored in local variables. During profiling the interrupt handler for the CMOS clock will do the actual work. The clock is activated by init_cmosclock and ended by stop_cmosclock.
+	During profiling the CMOS interrupt regularly samples the position of the program.
+	The results are output to a file specified by the user and analyzed by using the sprofalyze.pl perl script.
+	This script starts reading the data file which contains a header with the number of CMOS clock ticks that occurred between our start and end points. A program counter is read from the sample which is used in conjunction with a lookup table, which returns a function and the counter is increased for that function.
+	After all samples are processed and counters increased a percentage is calculated based on which functions were called the most.
+	Drivers, servers, and system tasks are tracked by this statistical profiling.

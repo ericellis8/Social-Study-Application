@@ -73,7 +73,7 @@
   'cmd_path' => '/opt/lampp/htdocs/svn/root/phpFreeChat/src/commands',
   'cmd_path_default' => '/opt/lampp/htdocs/svn/root/phpFreeChat/src/commands',
   'max_text_len' => 400,
-  'max_msg' => 20,
+  'max_msg' => 1000,
   'max_displayed_lines' => 150,
   'quit_on_closedwindow' => true,
   'focus_on_connect' => true,

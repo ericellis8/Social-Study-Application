@@ -7,8 +7,9 @@
   <ul id="pfc_channels_list"></ul>
   </td>
   <td width=''>-->
+  <center>
  <h2 id="pfc_title"></h2>
- 
+ </center>
   <div id="pfc_content_expandable">                
 	
   <div id="pfc_channels">
@@ -54,7 +55,7 @@
       </tbody>
     </table>
 
-    <div id="pfc_cmd_container">           
+    <div id="pfc_cmd_container" align=center>           
 <?php if ($display_pfc_logo) { ?>
      <!-- <a href="http://www.phpfreechat.net"
          id="pfc_logo"<?php if($openlinknewwindow) echo ' onclick="window.open(this.href,\'_blank\');return false;"'; ?>>

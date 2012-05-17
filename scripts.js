@@ -62,6 +62,29 @@ function removeUserFromTable(user){
 		
 	}
 }
+var lock;
+function lock_scroll(doc){
+	 if(doc != 'doc'){
+	 	lock = "yes";
+	 }
+	 var scrollPosition = [
+        self.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft,
+        self.pageYOffset || document.documentElement.scrollTop  || document.body.scrollTop
+      ];
+      var html = jQuery('html'); // it would make more sense to apply this to body, but IE7 won't have that
+      html.data('scroll-position', scrollPosition);
+      html.data('previous-overflow', html.css('overflow'));
+      html.css('overflow', 'hidden');
+      window.scrollTo(scrollPosition[0], scrollPosition[1]);
+}
+
+function unlock_scroll(){
+	  var html = jQuery('html');
+      var scrollPosition = html.data('scroll-position');
+      html.css('overflow', html.data('previous-overflow'));
+      window.scrollTo(scrollPosition[0], scrollPosition[1]);
+      lock = "no";
+}
 
 function addAnyUserToSession(user){
         for (i=0; i<buddiesClickedOn.length; i++){
@@ -186,6 +209,9 @@ function changeName(nick){
 
 function loadStudyRooms(username)
 {
+if(lock == "yes"){
+	return;
+}
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -222,6 +248,9 @@ xmlhttp.send();
 }
 function getBuddyList(username)
 {
+if(lock == "yes"){
+	return;
+}
 var xmlhttp;
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -476,8 +505,10 @@ function refresh_show_hide()
     { 
      showhide2.style.display = '';
      left_bar.style.display = 'none';
-     uniondraw.style.top = '0px';
-     uniondraw.style.width= '600px';
+     if(uniondraw){
+     	uniondraw.style.top = '0px';
+     	uniondraw.style.width= '600px';
+     }	
      document.getElementById('whiteboardApplication').style.width= '65%';
      if(document.getElementById("pfc_title").innerHTML != "OSU Chat"){
      	
@@ -489,7 +520,8 @@ function refresh_show_hide()
      document.getElementById('switchDocDraw').style.display = 'none';
      }else{
      	document.getElementById('whiteboardApplication').style.width= '68%';
-     	document.getElementById('newsfeed').style.width= '920px';
+     	document.getElementById('newsfeed').style.width= '915px';
+     	document.getElementById('newsfeed').style.top= '12px';
      }
     }
     else
@@ -512,6 +544,8 @@ function refresh_show_hide()
      if(document.getElementById("pfc_title").innerHTML != "OSU Chat"){
      	document.getElementById('switchDocDraw').style.display = '';
      	showWhiteboard();
+     }else{
+     	document.getElementById('newsfeed').style.top= '35px';
      }
     }
 }

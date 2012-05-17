@@ -22,6 +22,7 @@ div#pfc_container a img { border: 0px; }
 #pfc_minmax {
   margin: 0; padding: 0;
   cursor: pointer;
+  display:none;
 }
 div#pfc_content_expandable {
   margin: 0; padding: 0;
@@ -144,7 +145,7 @@ div.pfc_online {
   top: 0;
   overflow: auto;
   width: 20%;
-  min-width:100px;
+  min-width:80px;
 /* WARNING: do not fix height in % because it will display blank screens on IE6 */
 /*  height: 100%;*/
   color: #000; /* colors can be overriden by js nickname colorization */

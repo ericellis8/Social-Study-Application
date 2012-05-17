@@ -282,7 +282,7 @@ class pfcGlobalConfig
    * The number of messages s/he can see is defined by this parameter.
    * (Default value: 20</p>
    */
-  var $max_msg = 20;
+  var $max_msg = 1000;
 
   /**
    * <p>The maximum number of lines displayed in the window.

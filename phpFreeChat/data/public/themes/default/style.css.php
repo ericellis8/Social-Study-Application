@@ -9,7 +9,8 @@ div#pfc_container {
   color: #000;
   padding: 10px;
   min-height: 20px;
-  background-color: #FFF;
+  min-width: 350px;
+  background-color: #f2f2f2;
   background-image: /*url("<?php echo $c->getFileUrlFromTheme('images/background.gif'); ?>");*/
   background-position: right;
 /*  background-repeat: repeat-xy;*/
@@ -21,6 +22,7 @@ div#pfc_container a img { border: 0px; }
 #pfc_minmax {
   margin: 0; padding: 0;
   cursor: pointer;
+  display:none;
 }
 div#pfc_content_expandable {
   margin: 0; padding: 0;
@@ -35,7 +37,7 @@ div#pfc_channels_content {
   border-right: 1px solid #555;
    border-top: 1px solid #555;
   border-left: 1px solid #555;
-  border-bottom: 1px solid #555;
+  border-bottom: 0px solid #555;
   background-color: #FFF;
   height: <?php echo ($c->height!=''?$c->height:'300px'); ?>;
 }
@@ -48,13 +50,13 @@ ul#pfc_channels_list {
 	position:fixed;
 	bottom:0px;
 	width:100%;
-  margin: 0; padding: 0px;
-  padding-bottom:8px;
-  padding-top:11px;
+  margin: 0 -9px 0; padding: 0px;
+  padding-bottom:4px;
+  padding-top:10px;
   list-style-type: none;
   background-color:#DDD;
   display: block;
-  z-index: 50;
+  z-index: 999;
  /* border-bottom: 1px solid #555;*/
  border-top: 1px solid #555;
   /*  margin-bottom: -5px;*/
@@ -80,7 +82,8 @@ ul#pfc_channels_list li div {
   border-bottom: 1px solid #555;
   background-color: #DDD;
   vertical-align: bottom;  
-  font-size:25px;
+  font-size:20px;
+
   
 }
 
@@ -92,6 +95,8 @@ ul#pfc_channels_list li a {
   margin: 0; padding: 0;
   color: #000;
   text-decoration: none;  
+    position:relative;
+  bottom:3px;
 }
 ul#pfc_channels_list li.selected div {
   background-color: #FFF;
@@ -107,6 +112,8 @@ ul#pfc_channels_list li a.pfc_tabtitle img {
 }
 ul#pfc_channels_list li a.pfc_tabclose {
   margin-left: 4px;
+  position:relative;
+  bottom:5px;
   cursor: pointer;
 }
 /* blinking stuff (tab notifications) */
@@ -138,11 +145,11 @@ div.pfc_online {
   top: 0;
   overflow: auto;
   width: 20%;
+  min-width:80px;
 /* WARNING: do not fix height in % because it will display blank screens on IE6 */
 /*  height: 100%;*/
   color: #000; /* colors can be overriden by js nickname colorization */
   background-color: #FFF;
-
   /* borders are drawn by this image background */
   background-image: url("<?php echo $c->getFileUrlFromTheme('images/online-separator.gif'); ?>");
   background-position: left;
@@ -178,8 +185,9 @@ h2#pfc_title {
   margin:0; padding:0; border: none;
   font-size: 110%;
   position:relative;
-  right:220px;
+  /*right:220px;*/
   bottom:5px;
+  color:#c34500;
 }
 
 img#pfc_minmax {
@@ -217,6 +225,8 @@ span.pfc_nick {
 
 div#pfc_input_container {
   margin: 5px 0 0 0; padding: 0;
+  position:relative;
+  bottom:8px;
 }
 div#pfc_input_container input {
   margin: 0; padding: 0;

@@ -47,6 +47,7 @@ left:5px;
 width:600px;
 height:440px;
 border:1px solid black;
+overflow-y:scroll;
 }
 
 #searchbox{
@@ -169,14 +170,17 @@ outline:0px;
 #buddySearchResults{
 margin-top:6px;
 background-color:white;
-position:absolute;
+position:relative;
 left:7px;
+bottom:137px;
+height:100px;
 z-index:100;
 width:95%;
 max-height:200px;
-overflow:scroll;
+overflow-y:scroll;
 border:1px solid black;
-border-top:0px;
+border-bottom:0px;
+/*border-top:0px;*/
 padding-bottom:10px;
 }
 
@@ -205,6 +209,13 @@ left:400px;
 top:50px;
 }
 
+body.noscroll
+{
+    position: fixed; 
+    overflow-y: scroll;
+    width: 100%;
+}
+
 #left_bar{
 border: 1Px solid black;
 border-bottom:0px;
@@ -212,7 +223,7 @@ border-right:0px;
 border-left:0px;
 position:relative;
 left:0px;
-height:700px;
+height:100%;
 padding-top:10px;
 }
 

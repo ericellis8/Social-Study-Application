@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML 2.2//EN" "http://www.abisource.com/2004/xhtml-awml/xhtml-awml.mod">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:awml="http://www.abisource.com/2004/xhtml-awml/">
+ <head>
+  <!-- ======================================================= -->
+  <!-- Created by AbiWord, a free, Open Source wordprocessor.  -->
+  <!-- For more information visit http://www.abisource.com.    -->
+  <!-- ======================================================= -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>f1100116.html</title>
+  <meta name="Author" content="Kevin Quiring" />
+  <style type="text/css">
+   <!--
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}@media print, projection, embossed {
+	body {
+		padding-top:0.7875in;
+		padding-bottom:0.7875in;
+		padding-left:0.7875in;
+		padding-right:0.7875in;
+	}
+}
+body {
+	font-family:'Times New Roman';
+	font-size:12pt;
+	orphans:0;
+	text-align:left;
+	widows:0;
+}
+table {
+}
+td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:top;
+}
+p, h1, h2, h3, li {
+	font-family:'Times New Roman';
+	font-size:12pt;
+	orphans:0;
+	text-align:left;
+	widows:0;
+}
+     -->
+  </style>
+ </head>
+ <body>
+  <div>
+   <ol>
+    <li dir="ltr" style="text-align:left">&nbsp;<span xml:lang="-none-" lang="-none-">The first portion of the assignment's purpose was to introduce me to pthreads and learn how to create them and send them to a function. Once I understood how that works I learned how to use a semaphore and create a lock that allowed only one thread at a time into the critical region. After learning how these pieces work together, I was able to fully implement the dining philosophers solution.</span>    </li>
+   </ol>
+   <p dir="ltr" style="text-align:left"><span xml:lang="-none-" lang="-none-">&nbsp;</span></p>
+   <p dir="ltr" style="text-align:left"><span xml:lang="-none-" lang="-none-">	The second portion of the assignment's purpose was to use our knowledge of threading and implement matrix multiplication serially vs threading and compare the results. By looking at these results I was able to get a better understanding of the performance tradeoffs in using threads and by doing the calculations serially.</span></p>
+   <p dir="ltr" style="text-align:left"></p>
+   <ol>
+    <li dir="ltr" style="text-align:left">&nbsp;<span xml:lang="-none-" lang="-none-">For the dining philosophers assignment I borrowed the hello thread code and modified it to send the threads to a philosopher function. From there I pretty much followed the solution in the book and made a few changes until I had it working</span>    </li>
+   </ol>
+   <p dir="ltr" style="text-align:left"></p>
+   <p dir="ltr" style="text-align:left"><span xml:lang="-none-" lang="-none-">	For the matrix multiplication serially, I read in the matrices from the file and did all of the calculations using for loops by going through every row and column without threads. Then I used threads and divided up the work depending on how many rows were in the first matrix. If the number of rows in the first matrix divided evenly by the number of threads I used, then I divided the work up evenly among the threads. If there was a remainder of rows at the end of the multiplication, I added those remaining rows to the last thread to do calculations. For the matrices I used doubly nested arrays to represent rows and columns. I also used a semaphore lock in one small part when I was figuring out which starting row each thread would use. I didn't want multiple threads accessing that critical region so when one thread figured out its starting row, then I would add numRowsPerThread and give the next thread a new starting position so every thread was spread out evenly. </span></p>
+   <p dir="ltr" style="text-align:left"></p>
+   <ol>
+    <li dir="ltr" style="text-align:left">&nbsp;<span xml:lang="-none-" lang="-none-">For the dining philosophers problem, I tested to see whether my solution was correct by printing out if the thread was eating or thinking every time one of those functions was called. Therefore every time the threads looped through the never ending loop, the threads would either print out thinking or eating depending on its state. I knew that my solution was not correct if at anytime two threads (philosophers) sitting next to each other were eating at the same time.</span>    </li>
+   </ol>
+   <p dir="ltr" style="text-align:left"></p>
+   <p dir="ltr" style="text-align:left"><span xml:lang="-none-" lang="-none-">	For the matrix multiplication, I tested both serial and thread methods using small numbers and matrixes to make sure that my solution was working correct and printed out all the matrixes. Then when I knew my solutions were correct, I used the C code for the marsenne twister and made large matrixes of 10, 100, and 1000 and made sure that the different methods were working properly.</span></p>
+   <p dir="ltr" style="text-align:left"></p>
+   <p dir="ltr" style="text-align:left"><span xml:lang="-none-" lang="-none-">4) I learned how to create threads, send them to an initialization function, and implement them to do whatever was necessary. Also I learned how to use a semaphore lock so that only one thread at a time was allowed to access the critical region. I also learned some new gcc compiler errors and how I was messing up my code. And lastly, I learned some of the performance tradeoffs of creating threads and how sometimes threads can be faster if the overhead is worth the performance, and vice versa.</span></p>
+   <p dir="ltr" style="text-align:left"></p>
+   <p></p>
+  </div>
+ </body>
+</html>

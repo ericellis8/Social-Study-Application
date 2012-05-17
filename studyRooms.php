@@ -1,5 +1,7 @@
+
+
 <center><u style='font:16px Tahoma, Sans-serif;color:#c34500;position:relative;left:17px;text-decoration:none;' >Study Groups</u></center>
-<p align="left">	
+<p align="left" >	
 <?php
 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
 mysql_select_db("social_study_groups") or die(mysql_error());
@@ -17,7 +19,7 @@ session_start();
 	$username = $_GET['username'];
 	$query = "Select class_name, major, section, description from classes, class_permissions, user WHERE user.user_name = '$username' AND class_permissions.user_id = user.user_id and classes.crn = class_permissions.crn";
 	$result = mysql_query($query);
-
+	echo "<div style='overflow-y:;min-height:230px;'>";
 	echo "<table width=100%>";
 	if($_SESSION['major'] != ""){
 		echo "<tr><td><span style='font-size:23px;'>Departments</span></td><td align='right' style='font-size:23px;'>Online  </td></tr>";
@@ -35,9 +37,9 @@ session_start();
 		}
 	}
 	echo "</td></tr></table>";
-	echo "<BR>";
-	echo "<span style='font-size:23px;'>Classes</span><BR>";
-	echo "<table width=100%>";
+	//echo "<BR>";
+	echo "<span style='font-size:23px;position:relative;top:3px;'>Classes</span><BR>";
+	echo "<table width=100% style='position:relative;top:3px;'>";
 	while($row = mysql_fetch_array($result)){
 		$class = $row["class_name"] . ' Sec. ' . $row['section'];
 		$num = getNumberOfUsers($class);
@@ -50,9 +52,9 @@ session_start();
 	echo "</td></tr></table>";
 	$query = "Select group_name from study_groups, user, study_groups_users WHERE user.user_name = '$username' AND study_groups_users.user_id = user.user_id and study_groups.group_id = study_groups_users.group_id";
 	$result = mysql_query($query) or die(mysql_error());
-	echo "<BR>";
-	echo "<span style='font-size:23px;'>Groups</span><BR>";
-	echo "<table width=100%>";
+	//echo "<BR>";
+	echo "<span style='font-size:23px;position:relative;top:3px;'>Groups</span><BR>";
+	echo "<table width=100% style='position:relative;top:3px;'> ";
 	while($row = mysql_fetch_array($result)){
 		$group = $row["group_name"];
 		//$group = split('-', $group);
@@ -64,7 +66,7 @@ session_start();
 		}
 	}
 	echo "</td></tr></table>";
-	
+	echo "</div>";
 	
 
 ?>

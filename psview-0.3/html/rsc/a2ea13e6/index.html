@@ -1,0 +1,99 @@
+<A HREF="../../index.php?room=" >Upload a new file</A>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//ABISOURCE//DTD XHTML plus AWML 2.2//EN" "http://www.abisource.com/2004/xhtml-awml/xhtml-awml.mod">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:awml="http://www.abisource.com/2004/xhtml-awml/">
+ <head>
+  <!-- ======================================================= -->
+  <!-- Created by AbiWord, a free, Open Source wordprocessor.  -->
+  <!-- For more information visit http://www.abisource.com.    -->
+  <!-- ======================================================= -->
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>a2ea13e6.html</title>
+  <style type="text/css">
+   <!--
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}@media print, projection, embossed {
+	body {
+		padding-top:1in;
+		padding-bottom:1in;
+		padding-left:1in;
+		padding-right:1in;
+	}
+}
+body {
+	font-family:'Liberation Serif';
+	font-variant:normal;
+	text-indent:0in;
+	widows:2;
+	font-style:normal;
+	font-weight:normal;
+	text-decoration:none;
+	color:#000000;
+	text-align:left;
+	font-size:12pt;
+}
+table {
+}
+td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:top;
+}
+p, h1, h2, h3, li {
+	color:#000000;
+	font-family:'Liberation Serif';
+	font-size:12pt;
+	text-align:left;
+	vertical-align:normal;
+}
+     -->
+  </style>
+ </head>
+ <body>
+  <div>
+   <p dir="ltr" style="text-align:left">When profiling is started the kernel sets up a CMOS timer used for profiling. For now on the kernel will write profiling samples consisting of what process name and program counter to the pre-allocated memory.</p>
+   <p dir="ltr" style="text-align:left">	After the pointers are supplied by the profiling call to memory and sprof_info_s the kernel call "SPROF" is made to start profiling. This takes place in system/do_sprofile.c, where the pointers to the info struct are translated into addresses and stored in local variables. During profiling the interrupt handler for the CMOS clock will do the actual work. The clock is activated by init_cmosclock and ended by stop_cmosclock.</p>
+   <p dir="ltr" style="text-align:left">	During profiling the CMOS interrupt regularly samples the position of the program.</p>
+   <p dir="ltr" style="text-align:left">	The results are output to a file specified by the user and analyzed by using the sprofalyze.pl perl script.</p>
+   <p dir="ltr" style="text-align:left">	This script starts reading the data file which contains a header with the number of CMOS clock ticks that occurred between our start and end points. A program counter is read from the sample which is used in conjunction with a lookup table, which returns a function and the counter is increased for that function.</p>
+   <p dir="ltr" style="text-align:left">	After all samples are processed and counters increased a percentage is calculated based on which functions were called the most.</p>
+   <p dir="ltr" style="text-align:left">	Drivers, servers, and system tasks are tracked by this statistical profiling.</p>
+  </div>
+ </body>
+</html>

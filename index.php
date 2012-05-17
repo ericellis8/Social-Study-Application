@@ -1,7 +1,10 @@
+
+
 <?php
 mysql_connect("localhost","mia","soulskater") or die(mysql_error());
 mysql_select_db("social_study_groups") or die(mysql_error());
 session_start();
+
 if(isset($_SESSION['username'])){
 	$username = $_SESSION['username'];
 	$query = "Select show_name from user where user_name = '$username'";
@@ -19,7 +22,7 @@ if(isset($_SESSION['username'])){
 	}		
 	//$myNickName = $params["nick"];
 	$params['firstisadmin'] = true;
-	$params["isadmin"] = false; // makes everybody admin: do not use it on production servers ;)
+	$params["isadmin"] = true; // makes everybody admin: do not use it on production servers ;)
 	$params["serverid"] = md5("pupchat"); //__FILE__); // calculate a unique id for this chat
 	$params["debug"] = false;
 	$params["theme_path"] = "/phpFreeChat/themes";
@@ -27,6 +30,7 @@ if(isset($_SESSION['username'])){
 	$params["showsmileys"] = false;
 	$params["shownotice"] = 0;
 	$params["display_ping"] = false;
+	$params["max_msg"] = 1000;
 	$params["clock"] = false;
 	$params["quit_on_closedwindow"] = true;
 	$chat = new phpFreeChat( $params );
@@ -50,7 +54,7 @@ if(isset($_SESSION['username'])){
 <script type="text/javascript">
 	setTimeout("changeName('<?php echo $myNickName; ?>')", 1000);
 </script>
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         </head>  
         <body class="no-js"> 
 <!-- Image for blurring out the background -->        
@@ -58,7 +62,7 @@ if(isset($_SESSION['username'])){
 <!--///////////////////////////////////////-->           
       
 <!-- Navagation Bar -->      
-           <nav id="topNav" style="min-width:1090px;">  
+           <nav id="topNav" style="min-width:1190px;">  
                     <ul>  
                     	<li class='first-child'><a href='index.php'>Beaver Study</a></li>  
                         <li><a href='#' onclick="newStudySession()" title="Create a session for one time use">Start A Temporary Session</a></li>  
@@ -105,7 +109,7 @@ if(isset($_SESSION['username'])){
 			Log in
 			<table>
 				<tr><td>
-					<form align="left" action="login.php" method="post">
+					<form align="left" action="login_basic.php" method="post">
 						Username: 
 				</td><td>
 						<input type="text" name="username" /><br>
@@ -118,14 +122,14 @@ if(isset($_SESSION['username'])){
 			</table>
 					<center>
 						<input type="submit" value="Sign on" />
-						<input type="button" value="Authentication" onclick="window.location.href='https://login.oregonstate.edu/cas-dev/login?service=http://24.21.109.238/svn/root/login.php'" />
+						<input type="button" value="Onid Login" onclick="window.location.href='https://login.oregonstate.edu/cas-dev/login?service=http://24.21.109.238/svn/root/login.php'" />
 					</center>
 			<br>
 					</form>
 					
 			<br><br>
 					
-			New Users (Temporary placeholder before CAS authentication)
+			New Users (User's without ONID)
 			<table>
 				<tr><td>
 					<form align="left" action="addNewUser.php" method="post">
@@ -188,14 +192,14 @@ if(isset($_SESSION['username'])){
 		<BR>
 		<BR>
 		<HR color="#c34500">
-		<div id="buddyList">
+		<div id="buddyList" onMouseOver="lock_scroll()" onMouseOut="unlock_scroll()">
 			<script type="text/javascript">
 				getBuddyList('<?php echo $username; ?>');
 				setInterval("getBuddyList('<?php echo $username; ?>')", 5000);	
 			</script>	
 		</div>
 		<BR>
-		<img id="searchbox" src="images/searchBox.png">
+		<img id="searchbox" src="images/searchBox.png" >
 		<img style="position:relative;top:6px;left:7px;" src='images/search.png' /><input id="buddySearch" onBlur="setBuddySearchBoxValue()" value="Search Users" onFocus="setBuddySearchBoxValue()" type="text" size="30" onKeyUp="searchUsers()" value=""/>
 		<div style="display:none" id="buddySearchResults"></div>
 		</img>
@@ -205,7 +209,7 @@ if(isset($_SESSION['username'])){
 			<div style="display:none; "id="newStudySession"> </div>
 		
 <!-- Whiteboard Application -->			
-			<td id='whiteboardApplication' style="" valign="top" width="40%">
+			<td id='whiteboardApplication' style="" valign="top" width="40%"">
 				<?
 					if($_SESSION['loggedIn'] == 'true'){
 				?>
@@ -216,13 +220,13 @@ if(isset($_SESSION['username'])){
 					}
 				?>
 				<img title="Show Side Bar" align='left' id='showhide2' onclick='swap_show_hide()' src='images/right.png' style="display:none;"/>
-				<div id='newsfeed'></div>
+				<div id='newsfeed' onMouseOver="lock_scroll('doc')" onMouseOut="unlock_scroll()"></div>
 				<table>
 				<tr>
 				<td>
 				<div id='uniondraw'></div>
 				</td><td>
-				<span id='docViewer'></span>
+				<span id='docViewer' onMouseOver="lock_scroll('doc')" onMouseOut="unlock_scroll()"></span>
 				</td></tr>
 				</table>
 				<?
@@ -245,7 +249,7 @@ if(isset($_SESSION['username'])){
 
 			
 <!-- Chat Application -->			
-			<td id="chatApplication" align="center" valign="top">
+			<td id="chatApplication" align="left" valign="top">
 					<div class="content">
 						<?php
 							if($_SESSION['loggedIn'] == 'true')
